@@ -54,19 +54,19 @@ class GoogleTranslator {
       throw http.ClientException('Error: Can\'t parse json data');
     }
     
-    final jsonData = jsonDecode(data.body);
+//     final jsonData = jsonDecode(data.body);
     final sb = StringBuffer();
 
-    for (var c = 0; c < jsonData[0].length; c++) {
-      sb.write(jsonData[0][c][0]);
-    }
+//     for (var c = 0; c < jsonData[0].length; c++) {
+//       sb.write(jsonData[0][c][0]);
+//     }
 
-    if (from == 'auto' && from != to) {
-      from = jsonData[2] ?? from;
-      if (from == to) {
-        from = 'auto';
-      }
-    }
+//     if (from == 'auto' && from != to) {
+//       from = jsonData[2] ?? from;
+//       if (from == to) {
+//         from = 'auto';
+//       }
+//     }
 
     final translated = sb.toString();
     return _Translation(
