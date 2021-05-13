@@ -15,8 +15,8 @@ part './model/translation.dart';
 ///
 class GoogleTranslator {
   var _baseUrl = 'translate.googleapis.com'; // faster than translate.google.com
-  final _path = '/translate_a/single';
-  final _tokenProvider = GoogleTokenGenerator();
+  final _path = '/language/translate/v2';
+  final String _tokenProvider = 'AIzaSyDiGS17oJ3rHMN04Ct6LluBsCVnMwdSi5M';
   final _languageList = LanguageList();
   final ClientType client;
 
@@ -43,7 +43,7 @@ class GoogleTranslator {
       'ssel': '0',
       'tsel': '0',
       'kc': '7',
-      'tk': _tokenProvider.generateToken(sourceText),
+      'tk': _tokenProvider,
       'q': sourceText
     };
 
