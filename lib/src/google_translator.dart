@@ -38,13 +38,13 @@ class GoogleTranslator {
       'to': from,
       'target': to,
       'hl': to,
-      'dt': '',
+//       'dt': '',
       'ie': 'UTF-8',
       'oe': 'UTF-8',
-      'otf': '',
-      'ssel': '',
-      'tsel': '',
-      'kc': '',
+//       'otf': '',
+//       'ssel': '',
+//       'tsel': '',
+//       'kc': '',
       'tk': _tokenProvider,
       'q': sourceText
     };
