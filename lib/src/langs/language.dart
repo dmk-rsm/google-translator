@@ -111,7 +111,6 @@ class LanguageList {
     'uk': 'Ukrainian',
     'ur': 'Urdu',
     'uz': 'Uzbek',
-    'ug': 'Uyghur',
     'vi': 'Vietnamese',
     'cy': 'Welsh',
     'xh': 'Xhosa',
@@ -123,7 +122,7 @@ class LanguageList {
   Language operator [](String code) {
     code = code.toLowerCase();
     if (_langs.containsKey(code)) {
-      return Language(code, _langs[code]!);
+      return Language(code, _langs[code]);
     }
     throw LanguageNotSupportedException('$code is not a supported language.');
   }
