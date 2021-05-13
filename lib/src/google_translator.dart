@@ -59,7 +59,7 @@ class GoogleTranslator {
     final jsonData = jsonDecode(data.body);
     final sb = StringBuffer();
 
-    for (var c = 0; c < jsonData[0].length; c++) {
+    for (var c = 0; c < jsonData[0]; c++) {
       sb.write(jsonData[0][c][0]);
     }
 
