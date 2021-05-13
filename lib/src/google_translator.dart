@@ -45,7 +45,7 @@ class GoogleTranslator {
 //       'ssel': '',
 //       'tsel': '',
 //       'kc': '',
-      'tk': _tokenProvider,
+      'key': _tokenProvider,
       'q': sourceText
     };
 
