@@ -3,7 +3,7 @@
 library google_transl;
 
 import 'dart:async';
-import 'dart:convert' show jsonDecode;
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 import './tokens/google_token_gen.dart';
 import './langs/language.dart';
@@ -56,19 +56,19 @@ class GoogleTranslator {
       throw http.ClientException('Error ${data.statusCode}: ${data.body}', url);
     }
 
-    final jsonData = jsonDecode(data.body);
+    final body = json.decode(data.body);
     final sb = StringBuffer();
 
-    for (var c = 0; c < jsonData[0]; c++) {
-      sb.write(jsonData[0][c][0]);
-    }
+//     for (var c = 0; c < jsonData[0]; c++) {
+//       sb.write(jsonData[0][c][0]);
+//     }
 
-    if (from == 'auto' && from != to) {
-      from = jsonData[2] ?? from;
-      if (from == to) {
-        from = 'auto';
-      }
-    }
+//     if (from == 'auto' && from != to) {
+//       from = jsonData[2] ?? from;
+//       if (from == to) {
+//         from = 'auto';
+//       }
+//     }
 
     final translated = sb.toString();
     return _Translation(
