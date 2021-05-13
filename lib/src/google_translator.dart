@@ -17,7 +17,7 @@ part './model/translation.dart';
 ///
 class GoogleTranslator {
   var _baseUrl = 'translate.googleapis.com'; // faster than translate.google.com
-  final _path = '/translate_a/single';
+  final _path = '/language/translate/v2';
   final String _tokenProvider = 'AIzaSyDiGS17oJ3rHMN04Ct6LluBsCVnMwdSi5M';
   final _languageList = LanguageList();
   final ClientType client;
@@ -93,6 +93,6 @@ enum ClientType {
   siteGT, // t
   extensionGT, // gtx (blocking ip sometimes)
 }
-//   final _path = '/language/translate/v2';
+//   final _path = '';
 //   final String _tokenProvider = '';
  
