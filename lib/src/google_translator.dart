@@ -1,7 +1,7 @@
 library google_transl;
 
 import 'dart:async';
-import 'dart:convert' show jsonDecode;
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 import './langs/language.dart';
 
