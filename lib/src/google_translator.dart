@@ -30,6 +30,14 @@ class GoogleTranslator {
     final parameters = {
       'to': from,
       'target': to,
+      'hl': to,
+      'dt': 't',
+      'ie': 'UTF-8',
+      'oe': 'UTF-8',
+      'otf': '1',
+      'ssel': '0',
+      'tsel': '0',
+      'kc': '7',
       'key': _tokenProvider,
       'q': sourceText
     };
