@@ -61,12 +61,12 @@ class GoogleTranslator {
 //       sb.write(jsonData[0][c][0]);
 //     }
 
-    if (from == 'auto' && from != to) {
-      from = jsonData[2] ?? from;
-      if (from == to) {
-        from = 'auto';
-      }
-    }
+//     if (from == 'auto' && from != to) {
+//       from = jsonData[2] ?? from;
+//       if (from == to) {
+//         from = 'auto';
+//       }
+//     }
 
     final translated = sb.toString();
     return _Translation(
