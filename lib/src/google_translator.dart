@@ -1,8 +1,11 @@
+
+
 library google_transl;
 
 import 'dart:async';
-import 'dart:convert';
+import 'dart:convert' show jsonDecode;
 import 'package:http/http.dart' as http;
+import './tokens/google_token_gen.dart';
 import './langs/language.dart';
 
 part './model/translation.dart';
@@ -14,9 +17,12 @@ part './model/translation.dart';
 ///
 class GoogleTranslator {
   var _baseUrl = 'translate.googleapis.com'; // faster than translate.google.com
-  final _path = '/language/translate/v2';
+  final _path = '/translate_a/single';
   final String _tokenProvider = 'AIzaSyDiGS17oJ3rHMN04Ct6LluBsCVnMwdSi5M';
   final _languageList = LanguageList();
+  final ClientType client;
+
+  GoogleTranslator({this.client = ClientType.siteGT});
 
   /// Translates texts from specified language to another
   Future<Translation> translate(String sourceText,
@@ -28,6 +34,7 @@ class GoogleTranslator {
     }
 
     final parameters = {
+      'client': client == ClientType.siteGT ? 't' : 'gtx',
       'to': from,
       'target': to,
       'hl': to,
@@ -38,7 +45,7 @@ class GoogleTranslator {
       'ssel': '0',
       'tsel': '0',
       'kc': '7',
-      'key': _tokenProvider,
+      'tk': _tokenProvider,
       'q': sourceText
     };
 
@@ -49,12 +56,7 @@ class GoogleTranslator {
       throw http.ClientException('Error ${data.statusCode}: ${data.body}', url);
     }
 
-    
-    if (data.statusCode == null) {
-      throw http.ClientException('Error: Can\'t parse json data');
-    }
-    
-    final jsonData = json.decode(data.body);
+    final jsonData = jsonDecode(data.body);
     final sb = StringBuffer();
 
     for (var c = 0; c < jsonData[0].length; c++) {
@@ -84,5 +86,13 @@ class GoogleTranslator {
   }
 
   /// Sets base URL for countries that default URL doesn't work
-  set baseUrl(String url) => _baseUrl = url;
+  void set baseUrl(String url) => _baseUrl = url;
 }
+
+enum ClientType {
+  siteGT, // t
+  extensionGT, // gtx (blocking ip sometimes)
+}
+//   final _path = '/language/translate/v2';
+//   final String _tokenProvider = '';
+ 
