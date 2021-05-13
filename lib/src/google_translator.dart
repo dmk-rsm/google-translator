@@ -3,7 +3,6 @@ library google_transl;
 import 'dart:async';
 import 'dart:convert' show jsonDecode;
 import 'package:http/http.dart' as http;
-import './tokens/google_token_gen.dart';
 import './langs/language.dart';
 
 part './model/translation.dart';
@@ -18,9 +17,6 @@ class GoogleTranslator {
   final _path = '/language/translate/v2';
   final String _tokenProvider = 'AIzaSyDiGS17oJ3rHMN04Ct6LluBsCVnMwdSi5M';
   final _languageList = LanguageList();
-  final ClientType client;
-
-  GoogleTranslator({this.client = ClientType.siteGT});
 
   /// Translates texts from specified language to another
   Future<Translation> translate(String sourceText,
@@ -32,18 +28,9 @@ class GoogleTranslator {
     }
 
     final parameters = {
-      'client': client == ClientType.siteGT ? 't' : 'gtx',
-      'sl': from,
-      'tl': to,
-      'hl': to,
-      'dt': 't',
-      'ie': 'UTF-8',
-      'oe': 'UTF-8',
-      'otf': '1',
-      'ssel': '0',
-      'tsel': '0',
-      'kc': '7',
-      'tk': _tokenProvider,
+      'to': from,
+      'target': to,
+      'key': _tokenProvider,
       'q': sourceText
     };
 
@@ -89,9 +76,4 @@ class GoogleTranslator {
 
   /// Sets base URL for countries that default URL doesn't work
   set baseUrl(String url) => _baseUrl = url;
-}
-
-enum ClientType {
-  siteGT, // t
-  extensionGT, // gtx (blocking ip sometimes)
 }
